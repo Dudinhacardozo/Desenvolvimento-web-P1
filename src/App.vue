@@ -1,15 +1,74 @@
 <script setup>
 import { ref } from 'vue'
-const texto = ref('')
+
+const cores = ref([])
 </script>
-
 <template>
-  <div>
-        <input type="text" v-model="texto" />
-        <p>Texto digitado: {{ texto }}</p>
-    </div>
-</template>
+<form>
 
+      <div class="form-group col-md-6">
+      <label for="inputEmail4">Nome Completo:</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Nome Completo">
+      <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Email:</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+    </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Senha:</label>
+      <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Confirmar identidade</button>
+
+  <div class="form-group">
+    <label for="inputAddress">Endereço:</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Cidade:</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEstado">Estado:</label>
+      <select id="inputEstado" class="form-control">
+        <option selected>Escolher...</option>
+        <option>Acre (AC)</option>
+        <option>Alagoas (AL)</option>
+        <option>Amapá (AP)</option>
+        <option>Amazonas (AM)</option>
+        <option>Bahia (BA)</option>
+        <option>Ceará (CE)</option>
+        <option>Distrito Federal (DF)</option>
+        <option>Espírito Santo (ES)</option>
+        <option>Goiás (GO)</option>
+        <option>Maranhão (MA)</option>
+        <option>Mato Grosso (MT)</option>
+       <option>Mato Grosso do Sul (MS)</option>
+       <option>Minas Gerais (MG)</option>
+       <option>Pará (PA)</option>
+       <option>Paraíba (PB)</option>
+       <option>Paraná (PR)</option>
+       <option>Pernambuco (PE)</option>
+       <option>Piauí (PI)</option>
+       <option>Rio de Janeiro (RJ)</option>
+       <option>Rio Grande do Norte (RN)</option>
+       <option>Rio Grande do Sul (RS)</option>
+       <option>Rondônia (RO)</option>
+       <option>Roraima (RR)</option>
+       <option>Santa Catarina (SC)</option>
+       <option>São Paulo (SP)</option>
+       <option>Sergipe (SE)</option>
+       <option>Tocantins (TO)</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Enviar Formulário</button>
+</form>
+
+</template>
 <style scoped>
 
 </style>

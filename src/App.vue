@@ -1,37 +1,42 @@
 <script setup>
 import { ref } from 'vue'
+const texto = ref('')
 
-const cores = ref([])
 </script>
 <template>
-<form>
-
-      <div class="form-group col-md-6">
-      <label for="inputEmail4">Nome Completo:</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Nome Completo">
-      <div class="form-row">
-    <div class="form-group col-md-6">
+<form class="layout">
+<h2> Preencha o formulário abaixo</h2>
+    <div class="form-row">
+    <div class="cor col-md-4 mb-3">
+      <label for="validationDefault01">Nome:</label>
+      <input type="text" class="form-control" id="validationDefault01" placeholder="Nome" size="20" required>
+    </div>
+    </div>
+    <div class="cor form-group col-md-6">
       <label for="inputEmail4">Email:</label>
-      <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-    </div>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Senha:</label>
-      <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
-    </div>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" size="20" required>
   </div>
-  <button type="submit" class="btn btn-primary mb-2">Confirmar identidade</button>
+   <div class=" cor form-group mx-sm-3 mb-2">
+    <label for="inputPassword2" class="sr-only">Senha</label>
+    <input type="password" class="form-control" id="inputPassword2" placeholder="Senha:" size="20" maxlength="20" minlength="3"  required>
+    <p>Confirmar senha: </p>
+     <input type="password" name="senha2" placeholder="Confirmar Senha" size="20" maxlength="20" minlength="3" required>
+  </div>
 
-  <div class="form-group">
+  <div class="cor form-group">
     <label for="inputAddress">Endereço:</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
+    <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0" size="20" required>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="cor form-group col-md-6">
       <label for="inputCity">Cidade:</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="text" class="form-control" id="inputCity" size="20" required>
     </div>
-    <div class="form-group col-md-4">
+    <div class="cor">
+    <label for="inputEmail4">Data de Nascimento:</label>
+  <input id="date" type="date" size="20" >
+</div>
+    <div class= " cor form-group col-md-4">
       <label for="inputEstado">Estado:</label>
       <select id="inputEstado" class="form-control">
         <option selected>Escolher...</option>
@@ -62,13 +67,57 @@ const cores = ref([])
        <option>São Paulo (SP)</option>
        <option>Sergipe (SE)</option>
        <option>Tocantins (TO)</option>
-      </select>
+      </select> 
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Enviar Formulário</button>
-</form>
+  <div class="cor">
+  <p>
+    <label for="age">Idade:</label>
+    <input
+      id="age"
+      v-model="age"
+      type="number"
+      name="age"
+      min="18"
+      max="60"
+    >
+  </p>
+  </div>
+   <div class=" cor biografia">
+        <h4>Insira uma Biografia:</h4>
+        <textarea v-model="biografia" v-on:keypress="enviar = false"></textarea>
+      </div>
+       <div class=" cor hobies">
+        <h4>Insira seus Hobbies:</h4>
+        <textarea v-model="hobbies" v-on:keypress="enviar = false"></textarea>
+      </div>
+       <div class=" cor ling_prog">
+        <h4>Diga quais são as suas linguagens de programação:</h4>
+        <textarea v-model="ling_programacao" v-on:keypress="enviar = false"></textarea>
+      </div>
+      
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Enviar formulário</button>
+      </div></form>
 
 </template>
 <style scoped>
+.layout {
+  background-color:#FF69B4;
+  border-radius: 5px;
+  border-color: black;
+  border-style: solid;
+  color: white;
+  padding: 10px;
+}
+.cor{
+  color:black;
+	font-family:Arial, Helvetica, sans-serif;
 
+}
+h2 {
+  background-color: #FF1493	;
+  color: white;
+  text-align: center 
+}
 </style>

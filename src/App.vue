@@ -16,18 +16,21 @@ const lingprog = ref("")
 const erro = ref("")
 const exibir = ref(false)
 function confirmacao (){
-  if(senha.value === confirmarsenha.value){
-    erro.value = "";
-    return true;
+  if(senha.value != confirmarsenha.value){
+    alert('A senha não confere')
+    console.log(exibir.value)
+
+    exibir.value = false
   } else{
-    erro.value = "A senha não confere"
-    return false
+    console.log("Certo")
+
+    exibir.value = true
   }
 }
 </script>
 <template>
   <form class="layout"
-  @submit.prevent="exibir = confirmacao()">
+  @submit.prevent="">
     <h2> Preencha o formulário abaixo</h2>
 
     <div class="form-row">
@@ -128,7 +131,7 @@ function confirmacao (){
     </div>
 
     <div>
-      <input type="submit" value="Enviar Formulário">
+      <input type="submit" @click="confirmacao" value="Enviar Formulário">
     </div>
 
   </form>
@@ -144,7 +147,7 @@ function confirmacao (){
     Estado:{{ estado }}
     idade:{{ idade }}
     biografia:{{ biografia }}
-    hobies:{{ hobbies }}
+    hobies:{{ hobbies }}  
     Línguagem programação:{{ lingprog }}
 
   </div>

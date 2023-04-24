@@ -14,10 +14,9 @@ const biografia = ref("")
 const hobbies = ref("")
 const lingprog = ref("")
 const erro = ref("")
-const confirmaSenhs = ("")
 const exibir = ref(false)
 function confirmacao (){
-  if(senha.value === confirmaSenhs.value){
+  if(senha.value === confirmarsenha.value){
     erro.value = "";
     return true;
   } else{

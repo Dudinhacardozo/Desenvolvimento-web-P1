@@ -1,176 +1,166 @@
 <script setup>
 import { ref } from 'vue'
+const email = ref('')
+const senha = ref('')
+const confirmaSenha = ref('')
+const nome = ref('')
+const nascimento = ref('')
+const cidade = ref('')
+const estado = ref('')
+const hobbies = ref('')
+const liguagensProg = ref('')
+const biografia = ref('')
+const enviar = ref(false)
+const erro = ref('')
 
-const nome = ref("")
-const Email = ref("")
-const senha = ref("")
-const confirmarsenha = ref("")
-const endereço = ref("")
-const Cidade = ref("")
-const DatadeNascimento = ref("")
-const estado = ref("")
-const idade = ref("")
-const biografia = ref("")
-const hobbies = ref("")
-const lingprog = ref("")
-const erro = ref("")
-const exibir = ref(false)
-function confirmacao (){
-  if(senha.value != confirmarsenha.value){
-    alert('A senha não confere')
-    console.log(exibir.value)
-
-    exibir.value = false
-  } else{
-    console.log("Certo")
-
-    exibir.value = true
+function confirmacao() {
+  if (senha.value === confirmaSenha.value) {
+    erro.value = "";
+    return true;
+  } else {
+    erro.value = "A senha não confere!"
+    return false
   }
 }
 </script>
-<template>
-  <form class="layout"
-  @submit.prevent="">
-    <h2> Preencha o formulário abaixo</h2>
 
-    <div class="form-row">
-      <div class="cor col-md-4 mb-3">
-        <label for="validationDefault01">Nome:</label>
-        <input type="text" v-model="nome" class="form-control" id="validationDefault01" placeholder="Nome" size="20"
+<template>
+  <div>
+    <form class="formulario" @submit.prevent="enviar = confirmacao()">
+      <h1>Faça seu login:</h1>
+      <div class="nome">
+        <h4>Nome Completo</h4>
+        <input type="text" v-model="nome" v-on:keypress="enviar = false" placeholder="Nome " required>
+      </div>
+      <div class="email">
+        <h4>Digite seu email</h4>
+        <input type="email" v-model="email" v-on:keypress="enviar = false" placeholder="example@gmail" required>
+      </div>
+      <div class="senha">
+        <h4>Crie sua senha</h4>
+        <input type="password" v-model="senha" v-on:keypress="enviar = false" placeholder="senha" required>
+      </div>
+      <div class="confirmaSenha">
+        <h4>Confirme sua senha</h4>
+        <input type="password" v-model="confirmaSenha" v-on:keypress="enviar = false" placeholder="confirma senha"
           required>
       </div>
-    </div>
-
-    <div class="cor form-group col-md-6">
-      <label for="inputEmail4">Email:</label>
-      <input type="email" v-model="Email" class="form-control" id="inputEmail4" placeholder="Email" size="20" required>
-    </div>
-
-    <div class=" cor form-group mx-sm-3 mb-2">
-      <label for="inputPassword2" class="sr-only">Senha</label>
-      <input type="password" v-model="senha" class="form-control" id="inputPassword2" placeholder="Senha:" size="20"
-        maxlength="20" minlength="3" required>
-
-      <p>Confirmar senha: </p>
-      <input type="password" v-model="confirmarsenha" name="senha2" placeholder="Confirmar Senha" size="20" maxlength="20"
-        minlength="3" required>
-    </div>
-
-    <div class="cor form-group">
-      <label for="inputAddress">Endereço:</label>
-      <input type="text" v-model="endereço" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0"
-        size="20" required>
-    </div>
-
-    <div class="form-row">
-      <div class="cor form-group col-md-6">
-        <label for="inputCity">Cidade:</label>
-        <input type="text" v-model="Cidade" class="form-control" id="inputCity" size="20" required>
+      <div class="nascimento">
+        <h4>Sua data de nascimento</h4>
+        <input type="date" v-model="nascimento" v-on:keypress="enviar = false" required>
       </div>
-
-      <div class="cor">
-        <label for="inputEmail4">Data de Nascimento:</label>
-        <input id="date" v-model="DatadeNascimento" type="date" size="20">
+      <div class="cidade">
+        <h4>Cidade</h4>
+        <input type="text" v-model="cidade" v-on:keypress="enviar = false" placeholder="cidade" required>
       </div>
-
-      <div class=" cor form-group col-md-4">
-        <label for="inputEstado">Estado:</label>
-        <select id="inputEstado" v-model="estado" class="form-control">
-          <option selected>Escolher...</option>
-          <option>Acre (AC)</option>
-          <option>Alagoas (AL)</option>
-          <option>Amapá (AP)</option>
-          <option>Amazonas (AM)</option>
-          <option>Bahia (BA)</option>
-          <option>Ceará (CE)</option>
-          <option>Distrito Federal (DF)</option>
-          <option>Espírito Santo (ES)</option>
-          <option>Goiás (GO)</option>
-          <option>Maranhão (MA)</option>
-          <option>Mato Grosso (MT)</option>
-          <option>Mato Grosso do Sul (MS)</option>
-          <option>Minas Gerais (MG)</option>
-          <option>Pará (PA)</option>
-          <option>Paraíba (PB)</option>
-          <option>Paraná (PR)</option>
-          <option>Pernambuco (PE)</option>
-          <option>Piauí (PI)</option>
-          <option>Rio de Janeiro (RJ)</option>
-          <option>Rio Grande do Norte (RN)</option>
-          <option>Rio Grande do Sul (RS)</option>
-          <option>Rondônia (RO)</option>
-          <option>Roraima (RR)</option>
-          <option>Santa Catarina (SC)</option>
-          <option>São Paulo (SP)</option>
-          <option>Sergipe (SE)</option>
-          <option>Tocantins (TO)</option>
+      <div class="estado">
+        <h4>Estado</h4>
+        <select v-model="estado" v-on:keypress="enviar = false" required>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
+          <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
         </select>
       </div>
+      <div class="hobbies">
+        <h4>Informe seus Hobbies</h4>
+      </div>
+      <div class="lingprog">
+      <h4>Informe sua linguagem de programação:</h4>
+       <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+<label for="vehicle1">JavaScript</label>
+<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+<label for="vehicle2">Python</label>
+<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+<label for="vehicle3">Java</label> 
+<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+<label for="vehicle1">PHP</label>
+<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+<label for="vehicle2"> C#</label>
+<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+<label for="vehicle3">C++</label>
+ <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+<label for="vehicle1">TypeScript</label>
+<input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+<label for="vehicle2">Ruby</label>
+<input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+<label for="vehicle3">Swift</label>
+</div>
+      <div class="biografia">
+        <h4>Escreva uma biografia</h4>
+        <textarea name="Hobbies" v-model="biografia" cols="30" rows="5" v-on:keypress="enviar = false"></textarea>
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+    <p>{{ erro }}</p>
+  </div>
+
+  <div v-if="enviar" class="cadastro">
+    <h1>Cadastro de perfil</h1>
+    <p>Nome: {{ nome }}</p>
+    <div class="email-atual">
+      <p>Email: {{ email }}</p>
     </div>
-
-    <div class="cor">
-      <p>
-        <label for="age">Idade:</label>
-        <input id="age" v-model="idade" type="number" name="age" min="18" max="60">
-      </p>
+    <div class="senha-atual">
+      <p>Senha: {{ senha }}</p>
     </div>
-
-    <div class=" cor biografia">
-      <h4>Insira uma Biografia:</h4>
-      <textarea v-model="biografia" v-on:keypress="enviar = false"></textarea>
+    <div class="nascimento-atualizado">
+      <p>Data de nascimento: {{ nascimento }}</p>
     </div>
-
-    <div class=" cor hobies">
-      <h4>Insira seus Hobbies:</h4>
-      <textarea v-model="hobbies" v-on:keypress="enviar = false"></textarea>
+    <div class="bairro-atual">
+      <p>Bairro: {{ bairro }}</p>
     </div>
-
-    <div class=" cor ling_prog">
-      <h4>Diga quais são as suas linguagens de programação:</h4>
-      <textarea v-model="lingprog" v-on:keypress="enviar = false"></textarea>
+    <div class="numero-atual">
+      <p>Número da casa: {{ numero }}</p>
     </div>
-
-    <div>
-      <input type="submit" @click="confirmacao" value="Enviar Formulário">
+    <div class="complemento-atual">
+      <p>Complemento: {{ complemento }}</p>
     </div>
-
-  </form>
-
-  <div v-if="exibir">
-    Nome: {{ nome }}
-    Email: {{ Email }}
-    senha: {{ senha }}
-    confirmar senha: {{ confirmarsenha }}
-    Endereço: {{ endereço }}
-    Cidade:{{ Cidade }}
-    Data de Nascimento:{{ DatadeNascimento }}
-    Estado:{{ estado }}
-    idade:{{ idade }}
-    biografia:{{ biografia }}
-    hobies:{{ hobbies }}  
-    Línguagem programação:{{ lingprog }}
-
+    <div class="cidade-atual">
+      <p>Cidade: {{ cidade }}</p>
+    </div>
+    <div class="estado-atual">
+      <p>estado: {{ estado }}</p>
+    </div>
+    <div class="hobbies">
+      <p>Hobbies: {{ hobbies }}</p>
+    </div>
+    <div class="linguagens">
+      <p>Linguagens de programação: {{ liguagensProg }}</p>
+    </div>
+    <div class="bio">
+      <p>Biografia: {{ biografia }}</p>
+    </div>
   </div>
 </template>
+
 <style scoped>
-.layout {
-  background-color: #FF69B4;
-  border-radius: 5px;
-  border-color: black;
+.formulario {
+  background-color:#B0C4DE	;
+  border-radius: 30px;
   border-style: solid;
-  color: white;
   padding: 10px;
-}
-
-.cor {
-  color: black;
-  font-family: Arial, Helvetica, sans-serif;
-
-}
-
-h2 {
-  background-color: #FF1493;
-  color: white;
-  text-align: center
 }
 </style>
